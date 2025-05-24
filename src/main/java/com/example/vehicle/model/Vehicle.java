@@ -1,6 +1,7 @@
 package com.example.vehicle.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.sql.Timestamp;
 
@@ -10,11 +11,12 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private long id;
+    @NotBlank(message = "Plate number must not be empty")
     @Column(name = "plate_number", nullable = false, unique = true)
     private String plateNumber; // String, required, unique
     private String model;
     private String manufacturer;
-    @Column(name = "model_year")
+    @Column(name = "model_year") // change it from year to model year because year is a key inside h2 database
     private int year;
     private String ownerName;
     private Timestamp createdAt;
